@@ -20,6 +20,9 @@
 # production
 /build
 
+# design assets (local / export)
+/public/figma/
+
 # misc
 .DS_Store
 *.pem
