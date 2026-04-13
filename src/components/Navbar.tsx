@@ -149,26 +149,22 @@ export default function Navbar() {
             role="dialog"
             aria-modal="true"
             aria-label="Navigation"
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.58, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 0.22, ease: [0.4, 0, 0.2, 1] }}
           >
-            <motion.button
+            <button
               type="button"
               className="absolute inset-0 bg-black/35 backdrop-blur-[2px]"
               onClick={() => setMenuOpen(false)}
               aria-label="Close menu"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.62, ease: [0.4, 0, 0.2, 1] }}
             />
             <motion.nav
               className="absolute top-16 right-0 left-0 flex max-h-[calc(100vh-4rem)] flex-col gap-1 overflow-y-auto rounded-b-3xl border-x border-b border-white/45 bg-[rgba(232,246,253,0.72)] px-6 py-6 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.55),0_12px_40px_rgba(1,148,236,0.16)] backdrop-blur-2xl backdrop-saturate-150"
-              initial={{ opacity: 0, y: "-100%" }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: "-100%" }}
+              initial={{ y: "-100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "-100%" }}
               transition={{
                 duration: 0.82,
                 ease: [0.22, 1, 0.36, 1],

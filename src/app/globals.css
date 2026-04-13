@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+html {
+  /* Avoid overflow-x on body (hurts iOS momentum scroll); clip at root instead */
+  overflow-x: clip;
+}
+
 :root {
   --color-page: #ffffff;
   --color-text: #000000;

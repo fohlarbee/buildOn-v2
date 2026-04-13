@@ -97,7 +97,7 @@ export default function ProjectsCarousel({
     <div className="w-full px-4 sm:px-6">
       <div
         ref={scrollRef}
-        className="scrollbar-hide flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-pl-4 scroll-pr-4 pb-4 sm:scroll-pl-6 sm:scroll-pr-6"
+        className="touch-pan-x scrollbar-hide flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-pl-4 scroll-pr-4 pb-4 sm:scroll-pl-6 sm:scroll-pr-6"
       >
         {projects.map((p, i) => (
           <div
