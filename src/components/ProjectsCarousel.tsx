@@ -115,8 +115,8 @@ export default function ProjectsCarousel({
             onClick={() => scrollToIndex(i)}
             className={`rounded-full transition-all duration-300 motion-safe:hover:scale-125 motion-safe:active:scale-95 ${
               i === activeIndex
-                ? "h-2.5 w-6 bg-[#030033]"
-                : "h-2.5 w-2.5 bg-[rgba(3,0,51,0.3)]"
+                ? "h-2.5 w-6 bg-[#030033] dark:bg-white"
+                : "h-2.5 w-2.5 bg-[rgba(3,0,51,0.3)] dark:bg-white/35"
             }`}
             aria-label={`Go to project ${i + 1}`}
           />
