@@ -33,7 +33,7 @@ function Avatar({
         />
       </div>
       <div
-        className={`flex flex-col items-center gap-[2px] text-center leading-tight text-black xl:gap-[4px] xl:leading-normal ${compact ? "text-[10px] lg:text-[12px] xl:text-[20px]" : "text-[14px] xl:text-[20px]"}`}
+        className={`flex flex-col items-center gap-[2px] text-center leading-tight text-foreground xl:gap-[4px] xl:leading-normal ${compact ? "text-[10px] lg:text-[12px] xl:text-[20px]" : "text-[14px] xl:text-[20px]"}`}
       >
         <p className="font-display font-medium">{member.role}</p>
         <p className="font-display font-light">{member.name}</p>
@@ -51,7 +51,7 @@ export default function TeamSection() {
       >
         <div className="flex flex-col items-center gap-4 lg:mx-auto lg:max-w-[min(720px,94vw)] lg:gap-5 xl:absolute xl:left-[calc(16.67%+31px)] xl:top-0 xl:w-[899px] xl:max-w-none xl:gap-[7px]">
           <div className="flex w-full flex-col items-center gap-3 xl:w-[487px] xl:gap-[14px]">
-            <div className="flex w-full flex-col justify-center text-center font-display text-[28px] font-bold text-black lg:text-[32px] xl:text-[38px]">
+            <div className="flex w-full flex-col justify-center text-center font-display text-[28px] font-bold text-foreground lg:text-[32px] xl:text-[38px]">
               <p className="leading-normal">Our Team</p>
             </div>
             <div className="flex w-full items-center py-[10px]">
@@ -60,7 +60,7 @@ export default function TeamSection() {
               </p>
             </div>
           </div>
-          <p className="min-w-full text-center font-display text-[16px] font-light leading-normal text-[rgba(0,0,0,0.8)] lg:text-[18px] xl:text-[20px]">
+          <p className="min-w-full text-center font-display text-[16px] font-light leading-normal text-[rgba(0,0,0,0.8)] lg:text-[18px] xl:text-[20px] dark:text-zinc-300">
             Our team is made up of engineers, designers, and strategists
             passionate about building technology that makes a difference. We
             collaborate, innovate, and push boundaries to deliver exceptional
@@ -69,7 +69,7 @@ export default function TeamSection() {
         </div>
 
         {/* Mobile avatar grid */}
-        <div className="mt-8 grid grid-cols-3 gap-x-2 gap-y-5 rounded-[20px] bg-[rgba(1,148,236,0.15)] px-3 py-8 lg:mx-auto lg:max-w-[min(640px,94vw)] lg:gap-x-3 lg:px-4 xl:hidden">
+        <div className="mt-8 grid grid-cols-3 gap-x-2 gap-y-5 rounded-[20px] bg-[rgba(1,148,236,0.15)] px-3 py-8 transition-colors dark:bg-[rgba(1,148,236,0.08)] lg:mx-auto lg:max-w-[min(640px,94vw)] lg:gap-x-3 lg:px-4 xl:hidden">
           {teamMembers.map((m, i) => (
             <div
               key={m.name}

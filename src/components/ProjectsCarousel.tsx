@@ -12,13 +12,13 @@ interface Project {
 
 function MobileProjectCard({ p }: { p: Project }) {
   return (
-    <div className="relative flex h-full flex-col justify-between rounded-[20px] border-[0.748px] border-[rgba(0,0,0,0.5)] px-5 py-6 shadow-[0px_1.87px_4.674px_0px_rgba(0,0,0,0.1)] motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-out motion-safe:hover:-translate-y-1">
+    <div className="relative flex h-full flex-col justify-between rounded-[20px] border-[0.748px] border-[rgba(0,0,0,0.5)] px-5 py-6 shadow-[0px_1.87px_4.674px_0px_rgba(0,0,0,0.1)] motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-out motion-safe:hover:-translate-y-1 dark:border-[#0056a1]/35 dark:bg-[#0f1729] dark:shadow-[0_12px_40px_rgba(0,0,0,0.45)]">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[rgba(245,245,245,0.1)]"
+        className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[rgba(245,245,245,0.1)] dark:bg-white/6"
       />
       <div className="relative z-10">
-        <div className="mb-4 flex size-[40px] items-center justify-center rounded-[14px] bg-[rgba(37,111,111,0.1)]">
+        <div className="mb-4 flex size-[40px] items-center justify-center rounded-[14px] bg-[rgba(37,111,111,0.1)] dark:bg-[rgba(0,86,161,0.25)]">
           <div className="relative h-[16px] w-[14px]">
             <Image
               src={assets.projectIcon}
@@ -30,26 +30,26 @@ function MobileProjectCard({ p }: { p: Project }) {
             />
           </div>
         </div>
-        <h3 className="mb-2 font-sans text-[16px] font-semibold leading-normal text-[#2d3335]">
+        <h3 className="mb-2 font-sans text-[16px] font-semibold leading-normal text-[#2d3335] dark:text-zinc-100">
           {p.title}
         </h3>
-        <p className="font-sans text-[14px] font-normal leading-[22px] text-[#5a6062]">
+        <p className="font-sans text-[14px] font-normal leading-[22px] text-[#5a6062] dark:text-zinc-400">
           {p.description}
         </p>
       </div>
-      <div className="mt-4 flex items-start gap-3 opacity-50">
+      <div className="mt-4 flex items-start gap-3 opacity-50 dark:opacity-90">
         {p.tags.map((tag) => (
           <div
             key={tag}
-            className="rounded-br-[5px] rounded-tr-[5px] border-[0.935px] border-[#256f6f] bg-[rgba(78,75,213,0.2)] px-[10px] py-[8px]"
+            className="rounded-br-[5px] rounded-tr-[5px] border-[0.935px] border-[#256f6f] bg-[rgba(78,75,213,0.2)] px-[10px] py-[8px] dark:border-[#4fd1c5]/45 dark:bg-[rgba(0,86,161,0.22)]"
           >
-            <p className="font-sans text-[12px] font-semibold leading-[16px] text-[#2d3335]">
+            <p className="font-sans text-[12px] font-semibold leading-[16px] text-[#2d3335] dark:text-zinc-200">
               {tag}
             </p>
           </div>
         ))}
       </div>
-      <div className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_1.87px_1.87px_3.739px_0px_rgba(0,0,0,0.1)]" />
+      <div className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_1.87px_1.87px_3.739px_0px_rgba(0,0,0,0.1)] dark:shadow-[inset_1.87px_1.87px_3.739px_0px_rgba(255,255,255,0.06)]" />
     </div>
   );
 }
@@ -97,7 +97,7 @@ export default function ProjectsCarousel({
     <div className="w-full px-4 sm:px-6">
       <div
         ref={scrollRef}
-        className="touch-pan-x scrollbar-hide flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-pl-4 scroll-pr-4 pb-4 sm:scroll-pl-6 sm:scroll-pr-6"
+        className="touch-[pan-x_pan-y] flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-pl-4 scroll-pr-4 pb-4 sm:scroll-pl-6 sm:scroll-pr-6"
       >
         {projects.map((p, i) => (
           <div

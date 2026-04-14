@@ -4,7 +4,7 @@ import Reveal from "@/components/Reveal";
 
 export default function Footer() {
   return (
-    <Reveal className="w-full">
+    <Reveal className="w-[calc(100%+2rem)] -mx-4 sm:w-[calc(100%+3rem)] sm:-mx-6 lg:w-[calc(100%+4rem)] lg:-mx-8 xl:mx-0 xl:w-full">
       <footer
         className="relative overflow-clip px-6 py-10 lg:py-14 xl:h-[435px] xl:px-0 xl:py-0"
         style={{

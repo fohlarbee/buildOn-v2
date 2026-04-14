@@ -10,9 +10,9 @@ export default function HeroSection() {
         <Image
           src={assets.heroStars}
           alt=""
-          width={1040}
-          height={383}
-          className="absolute inset-0 block size-full max-w-none"
+          fill
+          className="object-fill"
+          sizes="1040px"
           priority
           unoptimized
         />
@@ -21,19 +21,19 @@ export default function HeroSection() {
       <HeroEntrance>
         <div className="flex w-full flex-col items-center gap-4 text-center lg:mx-auto lg:max-w-[min(720px,92vw)] xl:absolute xl:left-[calc(25%+39px)] xl:top-[96px] xl:w-[643px] xl:max-w-none xl:items-end xl:gap-[18px]">
           <div className="flex w-full flex-col items-center lg:text-[32px] lg:leading-tight xl:hidden">
-            <p className="font-courier text-[26px] leading-tight text-black sm:text-[30px] lg:text-[32px]">
+            <p className="font-courier text-[26px] leading-tight text-foreground sm:text-[30px] lg:text-[32px]">
               Pioneering
             </p>
-            <p className="mt-1 font-display text-[26px] font-semibold leading-tight text-black sm:text-[30px] lg:text-[32px]">
+            <p className="mt-1 font-display text-[26px] font-semibold leading-tight text-foreground sm:text-[30px] lg:text-[32px]">
               Technology for
             </p>
-            <p className="mt-1 font-display text-[26px] font-semibold leading-tight text-black sm:text-[30px] lg:text-[32px]">
+            <p className="mt-1 font-display text-[26px] font-semibold leading-tight text-foreground sm:text-[30px] lg:text-[32px]">
               Limitless Possibilities
             </p>
           </div>
 
           {/* Desktop xl+: Figma overlay grid */}
-          <div className="relative hidden text-[48px] leading-none text-black xl:inline-grid xl:grid-cols-[max-content] xl:grid-rows-[max-content] xl:place-items-start">
+          <div className="relative hidden text-[48px] leading-none text-foreground xl:inline-grid xl:grid-cols-[max-content] xl:grid-rows-[max-content] xl:place-items-start">
             <div className="col-start-1 row-start-1 mt-0 w-full font-display font-semibold whitespace-pre-wrap xl:ml-[96px] xl:w-[547px]">
               <p className="mb-0 leading-normal">
                 <span className="hidden xl:inline">
@@ -48,7 +48,7 @@ export default function HeroSection() {
             </p>
           </div>
 
-          <p className="w-full font-display text-[16px] font-light leading-normal text-[rgba(0,0,0,0.8)] lg:text-[17px] xl:w-[622px] xl:text-[20px]">
+          <p className="w-full font-display text-[16px] font-light leading-normal text-foreground/80 dark:text-zinc-300 lg:text-[17px] xl:w-[622px] xl:text-[20px]">
             We design, build, and scale innovative digital products — from
             concept to deployment — empowering businesses to lead in a rapidly
             evolving world.

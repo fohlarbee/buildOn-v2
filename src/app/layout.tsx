@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Red_Hat_Display } from "next/font/google";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const inter = Inter({
@@ -25,8 +26,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${redHat.variable}`}>
-      <body className="min-h-screen antialiased">{children}</body>
+    <html
+      lang="en"
+      className={`${inter.variable} ${redHat.variable}`}
+      style={{ msOverflowStyle: "none", scrollbarWidth: "none" }}
+      suppressHydrationWarning
+    >
+      <head>
+        <style>{`
+          html::-webkit-scrollbar,
+          body::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+            display: none;
+          }
+        `}</style>
+      </head>
+      <body
+        className="min-h-screen antialiased"
+        style={{ msOverflowStyle: "none", scrollbarWidth: "none" }}
+      >
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

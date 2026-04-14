@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import GlassCtaButton from "@/components/GlassCtaButton";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navLinks = [
   { label: "Home", href: "#" },
@@ -14,8 +15,8 @@ const navLinks = [
 
 const linkClass = (isHome: boolean) =>
   isHome
-    ? "text-black transition-opacity duration-200 ease-out hover:opacity-80"
-    : "text-[rgba(0,0,0,0.5)] transition-colors duration-200 ease-out hover:text-[#0056a1]";
+    ? "text-foreground transition-opacity duration-200 ease-out hover:opacity-80"
+    : "text-foreground/55 transition-colors duration-200 ease-out hover:text-[#0056a1] dark:text-zinc-400 dark:hover:text-[#7ec8ff]";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -33,55 +34,58 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 right-0 left-0 z-100 h-16 overflow-clip border-b border-white/45 bg-[rgba(204,234,251,0.78)] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.65),0_4px_24px_rgba(1,148,236,0.1)] backdrop-blur-xl backdrop-saturate-150 lg:h-[88px] lg:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.65),0_6px_28px_rgba(1,148,236,0.12)] xl:h-[117px] xl:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.65),0_8px_32px_rgba(1,148,236,0.14)]">
+      <header className="fixed top-0 right-0 left-0 z-100 h-16 overflow-clip border-b border-white/45 bg-[rgba(204,234,251,0.78)] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.65),0_4px_24px_rgba(1,148,236,0.1)] backdrop-blur-xl backdrop-saturate-150 dark:border-white/10 dark:bg-[rgba(15,18,35,0.88)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_4px_24px_rgba(0,0,0,0.35)] lg:h-[88px] lg:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.65),0_6px_28px_rgba(1,148,236,0.12)] lg:dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_6px_28px_rgba(0,0,0,0.35)] xl:h-[117px] xl:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.65),0_8px_32px_rgba(1,148,236,0.14)] xl:dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_8px_32px_rgba(0,0,0,0.35)]">
         <div className="relative mx-auto h-full w-full max-w-[1440px]">
           {/* Mobile: &lt; lg */}
           <div className="flex h-full items-center justify-between px-5 lg:hidden">
             <div className="flex items-center justify-center p-[10px]">
               <p className="font-sans font-bold whitespace-nowrap leading-none">
-                <span className="text-[22px] leading-normal text-black">
+                <span className="text-[22px] leading-normal text-foreground">
                   Build
                 </span>
                 <span className="text-[22px] leading-normal text-[#0056a1]">
                   ON
                 </span>
-                <span className="text-[22px] leading-normal text-black">
+                <span className="text-[22px] leading-normal text-foreground">
                   {" Inc."}
                 </span>
               </p>
             </div>
-            <button
-              type="button"
-              className="relative z-60 p-2"
-              aria-expanded={menuOpen}
-              aria-label={menuOpen ? "Close menu" : "Open menu"}
-              onClick={() => setMenuOpen((o) => !o)}
-            >
-              <div className="flex h-5 w-6 flex-col justify-center gap-1.5">
-                <span
-                  className={`block h-0.5 w-6 bg-black transition-transform ${menuOpen ? "translate-y-[7px] rotate-45" : ""}`}
-                />
-                <span
-                  className={`block h-0.5 w-6 bg-black transition-opacity ${menuOpen ? "opacity-0" : ""}`}
-                />
-                <span
-                  className={`block h-0.5 w-6 bg-black transition-transform ${menuOpen ? "-translate-y-[7px] -rotate-45" : ""}`}
-                />
-              </div>
-            </button>
+            <div className="flex items-center gap-2">
+              <ThemeToggle />
+              <button
+                type="button"
+                className="relative z-60 p-2"
+                aria-expanded={menuOpen}
+                aria-label={menuOpen ? "Close menu" : "Open menu"}
+                onClick={() => setMenuOpen((o) => !o)}
+              >
+                <div className="flex h-5 w-6 flex-col justify-center gap-1.5">
+                  <span
+                    className={`block h-0.5 w-6 bg-foreground transition-transform dark:bg-zinc-100 ${menuOpen ? "translate-y-[7px] rotate-45" : ""}`}
+                  />
+                  <span
+                    className={`block h-0.5 w-6 bg-foreground transition-opacity dark:bg-zinc-100 ${menuOpen ? "opacity-0" : ""}`}
+                  />
+                  <span
+                    className={`block h-0.5 w-6 bg-foreground transition-transform dark:bg-zinc-100 ${menuOpen ? "-translate-y-[7px] -rotate-45" : ""}`}
+                  />
+                </div>
+              </button>
+            </div>
           </div>
 
           {/* Tablet: lg–xl — compact horizontal bar */}
           <div className="hidden h-full items-center justify-between gap-4 px-6 lg:flex xl:hidden">
             <div className="flex shrink-0 items-center justify-center p-2">
               <p className="font-sans font-bold whitespace-nowrap leading-none">
-                <span className="text-[22px] leading-normal text-black lg:text-[24px]">
+                <span className="text-[22px] leading-normal text-foreground lg:text-[24px]">
                   Build
                 </span>
                 <span className="text-[22px] leading-normal text-[#0056a1] lg:text-[24px]">
                   ON
                 </span>
-                <span className="text-[22px] leading-normal text-black lg:text-[24px]">
+                <span className="text-[22px] leading-normal text-foreground lg:text-[24px]">
                   {" Inc."}
                 </span>
               </p>
@@ -97,6 +101,7 @@ export default function Navbar() {
                 </a>
               ))}
             </nav>
+            <ThemeToggle />
             <GlassCtaButton
               variant="brand"
               className="h-10 w-[min(168px,18vw)] shrink-0 px-3 font-sans text-[11px] font-normal leading-normal"
@@ -109,13 +114,13 @@ export default function Navbar() {
           <div className="relative hidden h-full xl:block">
             <div className="absolute top-1/2 left-5 flex -translate-y-1/2 items-center justify-center p-[10px] xl:left-[36px] xl:top-[38px] xl:translate-y-0">
               <p className="font-sans font-bold whitespace-nowrap leading-none">
-                <span className="text-[22px] leading-normal text-black xl:text-[28px]">
+                <span className="text-[22px] leading-normal text-foreground xl:text-[28px]">
                   Build
                 </span>
                 <span className="text-[22px] leading-normal text-[#0056a1] xl:text-[28px]">
                   ON
                 </span>
-                <span className="text-[22px] leading-normal text-black xl:text-[28px]">
+                <span className="text-[22px] leading-normal text-foreground xl:text-[28px]">
                   {" Inc."}
                 </span>
               </p>
@@ -131,6 +136,7 @@ export default function Navbar() {
                 </a>
               ))}
             </div>
+            <ThemeToggle className="absolute top-[39px] left-[1008px] hidden xl:flex" />
             <GlassCtaButton
               variant="brand"
               className="absolute top-[39px] left-[1155px] hidden h-[45px] w-[224px] font-sans text-[12px] font-normal leading-normal whitespace-nowrap xl:flex"
@@ -161,7 +167,7 @@ export default function Navbar() {
               aria-label="Close menu"
             />
             <motion.nav
-              className="absolute top-16 right-0 left-0 flex max-h-[calc(100vh-4rem)] flex-col gap-1 overflow-y-auto rounded-b-3xl border-x border-b border-white/45 bg-[rgba(232,246,253,0.72)] px-6 py-6 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.55),0_12px_40px_rgba(1,148,236,0.16)] backdrop-blur-2xl backdrop-saturate-150"
+              className="absolute top-16 right-0 left-0 flex max-h-[calc(100vh-4rem)] flex-col gap-1 overflow-y-auto rounded-b-3xl border-x border-b border-white/45 bg-[rgba(232,246,253,0.72)] px-6 py-6 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.55),0_12px_40px_rgba(1,148,236,0.16)] backdrop-blur-2xl backdrop-saturate-150 dark:border-white/12 dark:bg-[rgba(22,26,48,0.94)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_12px_40px_rgba(0,0,0,0.45)]"
               initial={{ y: "-100%" }}
               animate={{ y: 0 }}
               exit={{ y: "-100%" }}
@@ -174,7 +180,7 @@ export default function Navbar() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="rounded-xl px-4 py-3 font-sans text-[16px] text-[rgba(0,0,0,0.85)] transition-colors duration-200 ease-out hover:bg-white/35 active:bg-[rgba(1,148,236,0.18)] active:scale-[0.99]"
+                  className="rounded-xl px-4 py-3 font-sans text-[16px] text-foreground/90 transition-colors duration-200 ease-out hover:bg-white/35 active:bg-[rgba(1,148,236,0.18)] active:scale-[0.99] dark:hover:bg-white/10"
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.label}

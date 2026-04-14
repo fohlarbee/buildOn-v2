@@ -1,13 +1,40 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 html {
   /* Avoid overflow-x on body (hurts iOS momentum scroll); clip at root instead */
   overflow-x: clip;
 }
 
+/*
+ * Hide scrollbars everywhere while keeping scroll behavior (wheel, touch, keys).
+ * Covers the main viewport (html/body) and nested overflow (carousel, nav drawer).
+ * Reduces the brief “scrollbar flashes” on load when the track appears before
+ * these rules apply — keep this file imported first in layout.
+ */
+html,
+body,
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
 :root {
   --color-page: #ffffff;
   --color-text: #000000;
+}
+
+.dark {
+  --color-page: #0a0a0f;
+  --color-text: #f4f4f5;
 }
 
 @theme inline {
@@ -22,12 +49,4 @@ body {
   background: var(--color-page);
   color: var(--color-text);
   font-family: var(--font-inter);
-}
-
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
 }

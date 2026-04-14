@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="mx-auto w-full max-w-[1440px] overflow-x-hidden bg-white px-4 sm:px-6 lg:px-8 xl:px-0">
+    <div className="mx-auto w-full max-w-[1440px] overflow-x-hidden bg-background px-4 text-foreground transition-colors sm:px-6 lg:px-8 xl:px-0">
       <Navbar />
       <main className="pt-16 lg:pt-[88px] xl:pt-[117px]">
         <HeroSection />

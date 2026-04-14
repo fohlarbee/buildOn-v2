@@ -21,7 +21,7 @@ export default function CoreValuesSection() {
   return (
     <Reveal className="w-full">
       <section className="relative px-6 py-10 lg:min-h-[420px] lg:py-14 xl:h-[446px] xl:px-0 xl:py-0">
-        <div className="mb-6 text-center font-display text-[28px] font-bold leading-none text-black [text-shadow:0_1px_2px_rgba(0,0,0,0.06)] lg:mb-8 lg:text-[32px] xl:absolute xl:left-1/2 xl:top-[10px] xl:mb-0 xl:-translate-x-1/2 xl:-translate-y-1/2 xl:text-[38px] xl:whitespace-nowrap">
+        <div className="mb-6 text-center font-display text-[28px] font-bold leading-none text-foreground [text-shadow:0_1px_2px_rgba(0,0,0,0.06)] dark:[text-shadow:0_1px_2px_rgba(0,0,0,0.4)] lg:mb-8 lg:text-[32px] xl:absolute xl:left-1/2 xl:top-[10px] xl:mb-0 xl:-translate-x-1/2 xl:-translate-y-1/2 xl:text-[38px] xl:whitespace-nowrap">
           <p className="leading-[20px]">Core Values</p>
         </div>
 

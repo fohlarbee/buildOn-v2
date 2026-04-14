@@ -35,7 +35,7 @@ export default function ContactSection() {
                   alt=""
                   width={224}
                   height={12}
-                  className="block size-full max-w-none"
+                  className="block h-auto w-full max-w-none"
                   unoptimized
                 />
               </div>
@@ -84,7 +84,7 @@ export default function ContactSection() {
                   alt=""
                   width={224}
                   height={12}
-                  className="block size-full max-w-none"
+                  className="block h-auto w-full max-w-none"
                   unoptimized
                 />
               </div>

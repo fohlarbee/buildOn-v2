@@ -23,7 +23,7 @@ export default function AboutSection() {
         <div className="flex flex-col items-center gap-4 lg:mx-auto lg:max-w-[min(720px,94vw)] lg:gap-6 xl:absolute xl:left-1/2 xl:top-0 xl:h-[267px] xl:w-[1166px] xl:max-w-none xl:-translate-x-1/2 xl:gap-[7px]">
           <div className="flex w-full flex-col items-center gap-[10px] xl:w-[487px]">
             <div className="flex w-full flex-col items-center gap-[18px] xl:w-[379px] xl:items-start">
-              <p className="text-center font-display text-[28px] font-bold leading-normal text-black lg:text-[32px] xl:w-[354px] xl:text-[38px]">
+              <p className="text-center font-display text-[28px] font-bold leading-normal text-foreground lg:text-[32px] xl:w-[354px] xl:text-[38px]">
                 About buildON Inc.
               </p>
               <div className="relative h-0 w-[74px]">
@@ -33,7 +33,7 @@ export default function AboutSection() {
                     alt=""
                     width={76}
                     height={4}
-                    className="block size-full max-w-none"
+                    className="block h-auto w-full max-w-none"
                     unoptimized
                   />
                 </div>
@@ -46,16 +46,18 @@ export default function AboutSection() {
             </div>
           </div>
 
-          <div className="min-w-full text-center font-display text-[16px] font-light text-[rgba(0,0,0,0.8)] lg:text-[18px] xl:text-[20px]">
+          <div className="min-w-full text-center font-display text-[16px] font-light text-[rgba(0,0,0,0.8)] lg:text-[18px] xl:text-[20px] dark:text-zinc-300">
             <p className="mb-0">
               <span className="leading-normal">{"Based in "}</span>
-              <span className="font-semibold leading-normal">Delaware</span>
+              <span className="font-semibold leading-normal text-foreground dark:text-zinc-100">
+                Delaware
+              </span>
               <span className="leading-normal">
                 {
                   ", United States, buildON Inc. is a forward-thinking technology startup focused on turning bold ideas into impactful "
                 }
               </span>
-              <span className="font-bold leading-normal text-[#256f6f]">
+              <span className="font-bold leading-normal text-[#256f6f] dark:text-[#6dd4d4]">
                 digital solutions
               </span>
               <span className="leading-normal">
