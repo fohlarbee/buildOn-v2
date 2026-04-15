@@ -15,7 +15,6 @@ export default function Footer() {
       >
         {/* Main Content Wrapper */}
         <div className="mx-auto flex w-full max-w-[1288px] flex-col gap-12 lg:flex-row lg:justify-between lg:gap-8">
-          
           {/* Column 1: Logo + description + socials */}
           <div className="flex flex-col items-center gap-6 text-center lg:max-w-[380px] lg:items-start lg:text-left">
             <div className="flex w-full flex-col items-center gap-4 lg:items-start">
@@ -52,10 +51,7 @@ export default function Footer() {
                   unoptimized
                 />
               </div>
-              <Link
-                href="mailto:support@buildonhq.org"
-                className="cursor-pointer motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-out motion-safe:hover:scale-105"
-              >
+              <a href="mailto:support@buildonhq.org">
                 <div className="relative size-10 cursor-pointer motion-safe:transition-transform motion-safe:duration-300 motion-safe:hover:scale-110 lg:size-12">
                   <Image
                     src={assets.socialEmail}
@@ -65,14 +61,13 @@ export default function Footer() {
                     unoptimized
                   />
                 </div>
-              </Link>
+              </a>
             </div>
           </div>
 
           {/* Columns 2 & 3 Wrapper: Quick Links + Services */}
           {/* Changed items-center to items-start, added w-full max-w-[400px] to spread evenly on mobile */}
           <div className="mx-auto flex w-full max-w-[400px] flex-row items-start justify-between gap-8 sm:max-w-none sm:justify-center sm:gap-20 lg:mx-0 lg:w-auto lg:gap-32">
-            
             {/* Column 2: Quick Links */}
             <div className="flex flex-col items-start gap-4">
               <p className="font-display text-[22px] font-semibold text-white lg:text-[26px]">
@@ -122,7 +117,6 @@ export default function Footer() {
                 </span>
               </div>
             </div>
-            
           </div>
         </div>
 

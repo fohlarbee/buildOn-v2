@@ -30,41 +30,41 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsPending(true);
-
-    // 1. Grab the data directly from the form submission
+    
+    // 1. Grab the data
     const formData = new FormData(e.currentTarget);
-    const name = formData.get("name") as string;
-    const user_email = formData.get("user_email") as string;
-    const message = formData.get("message") as string;
-
-    // 2. Create the exact variables your template expects
     const templateParams = {
-      name: name,
-      user_email: user_email, // Keep this so you can hit "Reply" in your inbox!
-      message: message,
-      title: "New Website Inquiry", // You can change this default title to whatever you want
-      time: new Date().toLocaleString(), // Automatically grabs the user's current date and time
+      name: formData.get("name") as string,
+      user_email: formData.get("user_email") as string,
+      message: formData.get("message") as string,
+      title: "New Website Inquiry",
+      time: new Date().toLocaleString(),
     };
 
-    // 3. Use emailjs.send() instead of sendForm() to pass our custom templateParams
+    // 2. OPTIMISTIC UI: Instantly show the success screen! No waiting.
+    setIsSent(true);
+
+    // 3. Fire off the email silently in the background
     emailjs
       .send(
-        "service_f2x7zwz", // Your Service ID
-        "template_bg7s0eu", // Your Template ID
-        templateParams,     // The custom data object we just created
-        "_ZJomJ0v5Lh0cjPmD" // Your Public Key
+        "service_f2x7zwz", 
+        "template_bg7s0eu", 
+        templateParams,     
+        "_ZJomJ0v5Lh0cjPmD" 
       )
       .then(
         () => {
-          setIsSent(true);
-          setIsPending(false);
-          toast.success("Message sent successfully!");
+          // It sent successfully in the background! 
+          // We don't need to do anything because the user is already looking at the Success screen.
+          console.log("Email silently delivered.");
         },
         (error) => {
+          // Uh oh! The background send failed (e.g., they lost internet)
           console.error("EmailJS Error:", error.text);
-          toast.error("Something went wrong. Please try again.");
-          setIsPending(false);
+          
+          // Revert the UI back to the form and warn them
+          setIsSent(false); 
+          toast.error("Network error. Your message didn't go through. Please try again.");
         }
       );
   };

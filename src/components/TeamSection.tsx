@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { teamMembers } from "@/lib/figma-assets";
 import GlassCtaButton from "@/components/GlassCtaButton";
@@ -48,7 +50,7 @@ export default function TeamSection() {
     <Reveal className="w-full">
       <section
         id="team"
-        className="relative scroll-mt-24 px-6 py-10 lg:scroll-mt-[88px] lg:py-12 xl:h-[1029px] xl:scroll-mt-[117px] xl:px-0 xl:py-0"
+        className="relative w-full scroll-mt-24 px-6 lg:scroll-mt-[88px] lg:py-12 xl:h-[1029px] xl:scroll-mt-[117px] xl:px-0 xl:py-0"
       >
         <div className="flex flex-col items-center gap-4 lg:mx-auto lg:max-w-[min(720px,94vw)] lg:gap-5 xl:absolute xl:left-[calc(16.67%+31px)] xl:top-0 xl:w-[899px] xl:max-w-none xl:gap-[7px]">
           <div className="flex w-full flex-col items-center gap-3 xl:w-[487px] xl:gap-[14px]">
@@ -69,8 +71,8 @@ export default function TeamSection() {
           </p>
         </div>
 
-        {/* Mobile avatar grid */}
-        <div className="mt-8 grid grid-cols-3 gap-x-2 gap-y-5 rounded-[20px] bg-[rgba(1,148,236,0.15)] px-3 py-8 transition-colors dark:bg-[rgba(1,148,236,0.08)] lg:mx-auto lg:max-w-[min(640px,94vw)] lg:gap-x-3 lg:px-4 xl:hidden">
+        {/* Mobile avatar grid - Updated to break out of parent padding */}
+        <div className="mt-8 relative left-[50%] grid w-[100vw] -translate-x-1/2 grid-cols-3 gap-x-2 gap-y-5 bg-[rgba(1,148,236,0.15)] px-6 py-8 transition-colors dark:bg-[rgba(1,148,236,0.08)] lg:static lg:mx-auto lg:w-full lg:max-w-[min(640px,94vw)] lg:translate-x-0 lg:gap-x-3 lg:px-4 xl:hidden">
           {teamMembers.map((m, i) => (
             <div
               key={m.name}

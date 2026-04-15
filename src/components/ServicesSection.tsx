@@ -147,7 +147,7 @@ export default function ServicesSection() {
         id="services"
         // Changed w-screen to w-[100vw] to prevent Windows scrollbar overflow bugs
         // Added smooth padding transitions: px-4 -> md:px-8 -> lg:px-16 -> xl:px-36
-        className="relative left-[50%] right-[50%] w-[100vw] -ml-[50vw] -mr-[50vw] scroll-mt-24 overflow-clip bg-[#030033] px-4 py-10 md:px-8 md:py-14 lg:scroll-mt-22 lg:px-16 lg:py-16 md:px-36 xl:py-20"
+        className="relative left-[50%] right-[50%] w-[100vw] -ml-[50vw] -mr-[50vw] scroll-mt-24 overflow-clip bg-[#030033] px-4 p-10 md:px-8 md:py-14 lg:scroll-mt-22 lg:px-16 lg:py-16 md:px-36 xl:py-20"
       >
         {/* Re-introduced a safe max-width so it doesn't infinitely stretch on 4K monitors */}
         <div className="mx-auto w-full max-w-[1400px]">
