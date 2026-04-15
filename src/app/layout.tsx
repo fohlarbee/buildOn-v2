@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Red_Hat_Display } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -46,7 +47,10 @@ export default function RootLayout({
         className="min-h-screen antialiased"
         style={{ msOverflowStyle: "none", scrollbarWidth: "none" }}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <Toaster />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
