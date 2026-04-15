@@ -50,9 +50,13 @@ export default function TeamSection() {
     <Reveal className="w-full">
       <section
         id="team"
-        className="relative w-full scroll-mt-24 px-6 lg:scroll-mt-[88px] lg:py-12 xl:h-[1029px] xl:scroll-mt-[117px] xl:px-0 xl:py-0"
+        // REMOVED: xl:h-[1029px]. Sections should grow naturally with their content!
+        className="relative w-full scroll-mt-24 px-6 lg:scroll-mt-[88px] lg:py-12 xl:scroll-mt-[117px] xl:px-0 xl:py-16"
       >
-        <div className="flex flex-col items-center gap-4 lg:mx-auto lg:max-w-[min(720px,94vw)] lg:gap-5 xl:absolute xl:left-[calc(16.67%+31px)] xl:top-0 xl:w-[899px] xl:max-w-none xl:gap-[7px]">
+        {/* Text Header Wrapper */}
+        {/* REMOVED: xl:absolute xl:left-[calc(...)] */}
+        {/* ADDED: xl:mx-auto to center it dynamically */}
+        <div className="flex flex-col items-center gap-4 lg:mx-auto lg:max-w-[min(720px,94vw)] lg:gap-5 xl:mx-auto xl:w-full xl:max-w-[899px] xl:gap-[7px]">
           <div className="flex w-full flex-col items-center gap-3 xl:w-[487px] xl:gap-[14px]">
             <div className="flex w-full flex-col justify-center text-center font-display text-[28px] font-bold text-foreground lg:text-[32px] xl:text-[38px]">
               <p className="leading-normal">Our Team</p>
@@ -71,8 +75,8 @@ export default function TeamSection() {
           </p>
         </div>
 
-        {/* Mobile avatar grid - Updated to break out of parent padding */}
-        <div className="mt-8 relative left-[50%] grid w-[100vw] -translate-x-1/2 grid-cols-3 gap-x-2 gap-y-5 bg-[rgba(1,148,236,0.15)] px-6 py-8 transition-colors dark:bg-[rgba(1,148,236,0.08)] lg:static lg:mx-auto lg:w-full lg:max-w-[min(640px,94vw)] lg:translate-x-0 lg:gap-x-3 lg:px-4 xl:hidden">
+        {/* Mobile avatar grid */}
+        <div className="relative left-[50%] mt-8 w-[100vw] -translate-x-1/2 grid grid-cols-3 gap-x-2 gap-y-5 bg-[rgba(1,148,236,0.15)] px-6 py-8 transition-colors dark:bg-[rgba(1,148,236,0.08)] lg:static lg:mx-auto lg:w-full lg:max-w-[min(640px,94vw)] lg:translate-x-0 lg:gap-x-3 lg:px-4 xl:hidden">
           {teamMembers.map((m, i) => (
             <div
               key={m.name}
@@ -98,21 +102,31 @@ export default function TeamSection() {
         </div>
 
         {/* Desktop avatar frame */}
-        <div className="hidden xl:absolute xl:left-[-2px] xl:top-[221px] xl:grid xl:h-[808px] xl:w-[1442px] xl:grid-cols-[repeat(1,fit-content(100%))] xl:grid-rows-[fit-content(100%)_fit-content(100%)_minmax(0,1fr)] xl:gap-y-[26px] xl:overflow-clip xl:bg-[rgba(1,148,236,0.15)] xl:px-[246px] xl:pb-[32px] xl:pt-[75px]">
-          <div className="col-start-1 row-start-1 flex shrink-0 items-center gap-[77px] self-start justify-self-start">
+        {/* REMOVED: xl:absolute, hardcoded pixel widths/heights, and messy grid specs */}
+        {/* ADDED: Standard Flexbox centering and the 100vw breakout trick */}
+        <div className="hidden xl:relative xl:left-[50%] xl:mt-16 xl:flex xl:w-[100vw] xl:-translate-x-1/2 xl:flex-col xl:items-center xl:gap-12 xl:overflow-clip xl:bg-[rgba(1,148,236,0.15)] xl:pb-[60px] xl:pt-[75px]">
+          {/* Row 1 (Centered) */}
+          <div className="flex w-full max-w-[1200px] shrink-0 items-center justify-center gap-[77px]">
             {teamMembers.slice(0, 4).map((m) => (
               <Avatar key={m.name} member={m} />
             ))}
           </div>
-          <div className="col-start-1 row-start-2 flex w-[688px] shrink-0 items-center gap-[73px] self-start justify-self-center">
+
+          {/* Row 2 (Centered) */}
+          <div className="flex w-full max-w-[1200px] shrink-0 items-center justify-center gap-[73px]">
             {teamMembers.slice(4).map((m) => (
               <Avatar key={m.name} member={m} />
             ))}
           </div>
-          <Link href={"https://x.com/buildON_Inc"} className="cursor-pointer">
+
+          {/* Button (Centered) */}
+          <Link
+            href={"https://x.com/buildON_Inc"}
+            className="mt-4 cursor-pointer"
+          >
             <GlassCtaButton
               variant="navy"
-              className="col-start-1 row-start-3 h-[45px] w-[277px] shrink-0 justify-self-center font-display text-[12px] font-normal leading-normal whitespace-nowrap"
+              className="h-[45px] w-[277px] font-display text-[12px] font-normal leading-normal whitespace-nowrap"
             >
               Get in touch
             </GlassCtaButton>
