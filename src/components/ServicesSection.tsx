@@ -136,7 +136,7 @@ function ServiceIcon({ kind }: { kind: "commerce" | "shield" }) {
         className="absolute inset-0 block size-full max-w-none"
         unoptimized
       />
-    </div>
+    </div> 
   );
 }
 

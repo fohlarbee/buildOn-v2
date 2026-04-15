@@ -45,10 +45,10 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
     emailjs
       .send(
-        "service_f2x7zwz",
-        "template_bg7s0eu",
+        process.env.SERVICE_ID!,
+        process.env.TEMPLATE_ID!,
         templateParams,
-        "_ZJomJ0v5Lh0cjPmD",
+        process.env.PUBLIC_KEY!,
       )
       .then(
         () => {

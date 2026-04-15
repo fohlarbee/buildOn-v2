@@ -50,12 +50,9 @@ export default function TeamSection() {
     <Reveal className="w-full">
       <section
         id="team"
-        // REMOVED: xl:h-[1029px]. Sections should grow naturally with their content!
-        className="relative w-full scroll-mt-24 px-6 lg:scroll-mt-[88px] lg:py-12 xl:scroll-mt-[117px] xl:px-0 xl:py-16"
+        // CHANGED: Replaced lg:py-12 with lg:pt-12, and xl:py-16 with xl:pt-16. Added pb-0 to ensure no bottom gap.
+        className="relative w-full scroll-mt-24 px-6 pb-0 pt-10 lg:scroll-mt-[88px] lg:pb-0 lg:pt-12 xl:scroll-mt-[117px] xl:px-0 xl:pb-0 xl:pt-16"
       >
-        {/* Text Header Wrapper */}
-        {/* REMOVED: xl:absolute xl:left-[calc(...)] */}
-        {/* ADDED: xl:mx-auto to center it dynamically */}
         <div className="flex flex-col items-center gap-4 lg:mx-auto lg:max-w-[min(720px,94vw)] lg:gap-5 xl:mx-auto xl:w-full xl:max-w-[899px] xl:gap-[7px]">
           <div className="flex w-full flex-col items-center gap-3 xl:w-[487px] xl:gap-[14px]">
             <div className="flex w-full flex-col justify-center text-center font-display text-[28px] font-bold text-foreground lg:text-[32px] xl:text-[38px]">
@@ -76,7 +73,7 @@ export default function TeamSection() {
         </div>
 
         {/* Mobile avatar grid */}
-        <div className="relative left-[50%] mt-8 w-[100vw] -translate-x-1/2 grid grid-cols-3 gap-x-2 gap-y-5 bg-[rgba(1,148,236,0.15)] px-6 py-8 transition-colors dark:bg-[rgba(1,148,236,0.08)] lg:static lg:mx-auto lg:w-full lg:max-w-[min(640px,94vw)] lg:translate-x-0 lg:gap-x-3 lg:px-4 xl:hidden">
+        <div className="relative left-[50%] mt-8 grid w-[100vw] -translate-x-1/2 grid-cols-3 gap-x-2 gap-y-5 bg-[rgba(1,148,236,0.15)] px-6 py-8 transition-colors dark:bg-[rgba(1,148,236,0.08)] lg:static lg:mx-auto lg:w-full lg:max-w-[min(640px,94vw)] lg:translate-x-0 lg:gap-x-3 lg:px-4 xl:hidden">
           {teamMembers.map((m, i) => (
             <div
               key={m.name}
@@ -102,28 +99,21 @@ export default function TeamSection() {
         </div>
 
         {/* Desktop avatar frame */}
-        {/* REMOVED: xl:absolute, hardcoded pixel widths/heights, and messy grid specs */}
-        {/* ADDED: Standard Flexbox centering and the 100vw breakout trick */}
         <div className="hidden xl:relative xl:left-[50%] xl:mt-16 xl:flex xl:w-[100vw] xl:-translate-x-1/2 xl:flex-col xl:items-center xl:gap-12 xl:overflow-clip xl:bg-[rgba(1,148,236,0.15)] xl:pb-[60px] xl:pt-[75px]">
-          {/* Row 1 (Centered) */}
+          
           <div className="flex w-full max-w-[1200px] shrink-0 items-center justify-center gap-[77px]">
             {teamMembers.slice(0, 4).map((m) => (
               <Avatar key={m.name} member={m} />
             ))}
           </div>
-
-          {/* Row 2 (Centered) */}
+          
           <div className="flex w-full max-w-[1200px] shrink-0 items-center justify-center gap-[73px]">
             {teamMembers.slice(4).map((m) => (
               <Avatar key={m.name} member={m} />
             ))}
           </div>
 
-          {/* Button (Centered) */}
-          <Link
-            href={"https://x.com/buildON_Inc"}
-            className="mt-4 cursor-pointer"
-          >
+          <Link href={"https://x.com/buildON_Inc"} className="mt-4 cursor-pointer">
             <GlassCtaButton
               variant="navy"
               className="h-[45px] w-[277px] font-display text-[12px] font-normal leading-normal whitespace-nowrap"
@@ -131,6 +121,7 @@ export default function TeamSection() {
               Get in touch
             </GlassCtaButton>
           </Link>
+          
         </div>
       </section>
     </Reveal>
