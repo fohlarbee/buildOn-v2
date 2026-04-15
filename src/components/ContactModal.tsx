@@ -30,7 +30,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     // 1. Grab the data
     const formData = new FormData(e.currentTarget);
     const templateParams = {
@@ -47,25 +47,26 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     // 3. Fire off the email silently in the background
     emailjs
       .send(
-        "service_f2x7zwz", 
-        "template_bg7s0eu", 
-        templateParams,     
-        "_ZJomJ0v5Lh0cjPmD" 
+        "service_f2x7zwz",
+        "template_bg7s0eu",
+        templateParams,
+        "_ZJomJ0v5Lh0cjPmD",
       )
       .then(
         () => {
-          // It sent successfully in the background! 
-          // We don't need to do anything because the user is already looking at the Success screen.
           console.log("Email silently delivered.");
+          toast.success("Your message was sent successfully!");
         },
         (error) => {
           // Uh oh! The background send failed (e.g., they lost internet)
           console.error("EmailJS Error:", error.text);
-          
+
           // Revert the UI back to the form and warn them
-          setIsSent(false); 
-          toast.error("Network error. Your message didn't go through. Please try again.");
-        }
+          setIsSent(false);
+          toast.error(
+            "Network error. Your message didn't go through. Please try again.",
+          );
+        },
       );
   };
 
@@ -98,7 +99,8 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             </div>
             <p className="font-display text-2xl font-bold">Message Sent!</p>
             <p className="text-center text-sm text-white/70">
-              Thanks for reaching out to BuildON. <br /> We will get back to you shortly.
+              Thanks for reaching out to BuildON. <br /> We will get back to you
+              shortly.
             </p>
             <button
               onClick={onClose}
@@ -120,7 +122,6 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
             {/* Notice we removed ref={formRef} since we are using FormData now */}
             <form onSubmit={sendEmail} className="flex flex-col gap-4">
-              
               {/* NEW: Name Input */}
               <div className="flex flex-col gap-1.5">
                 <label className="text-sm font-medium text-white/80">
