@@ -12,6 +12,7 @@ export default function HeroSection() {
       projectsSection.scrollIntoView({ behavior: "smooth" });
     }
   };
+
   return (
     <section className="relative flex flex-col items-center px-6 py-10 lg:min-h-[460px] xl:block xl:h-[524px] xl:px-0 xl:py-0">
       <div className="pointer-events-none hidden xl:absolute xl:left-[calc(8.33%+22px)] xl:top-[100.97px] xl:block xl:h-[382.745px] xl:w-[1039.171px]">
@@ -64,10 +65,14 @@ export default function HeroSection() {
         </div>
 
         <div className="mt-8 flex w-full flex-col items-center gap-4 sm:flex-row sm:justify-center lg:mt-10 lg:gap-8 xl:absolute xl:left-[calc(25%+99px)] xl:top-[337px] xl:mt-0 xl:w-auto xl:gap-[76px]">
-          <Link href={"https://x.com/buildON_Inc"} className="cursor-pointer">
+          {/* ADDED w-full sm:w-auto TO THE LINK TAG HERE */}
+          <Link
+            href={"https://x.com/buildON_Inc"}
+            className="w-full cursor-pointer sm:w-auto"
+          >
             <GlassCtaButton
               variant="navy"
-              className="h-[45px] w-full max-w-[277px] cursor-pointer shrink-0 font-display text-[12px] font-normal leading-normal whitespace-nowrap lg:max-w-[240px] xl:w-[277px] xl:max-w-none"
+              className="h-[45px] cursor-pointer w-full shrink-0 font-display text-[12px] font-normal leading-normal whitespace-nowrap lg:max-w-[240px] xl:w-[277px] xl:max-w-none"
             >
               Get in touch
             </GlassCtaButton>
@@ -76,7 +81,7 @@ export default function HeroSection() {
           <GlassCtaButton
             onClick={scrollToProjects}
             variant="azure"
-            className="h-[45px] cursor-pointer w-full max-w-[277px] shrink-0 font-display text-[12px] font-normal leading-normal whitespace-nowrap lg:max-w-[240px] xl:w-[277px] xl:max-w-none"
+            className="h-[45px] cursor-pointer w-full shrink-0 font-display text-[12px] font-normal leading-normal whitespace-nowrap lg:max-w-[240px] xl:w-[277px] xl:max-w-none"
           >
             Explore our work
           </GlassCtaButton>
