@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import GlassCtaButton from "@/components/GlassCtaButton";
 import ThemeToggle from "@/components/ThemeToggle";
+import Link from "next/link";
 
 const navLinks = [
   { label: "Home", href: "#" },
@@ -34,124 +35,81 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 right-0 left-0 z-100 h-16 overflow-clip border-b border-white/45 bg-[rgba(204,234,251,0.78)] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.65),0_4px_24px_rgba(1,148,236,0.1)] backdrop-blur-xl backdrop-saturate-150 dark:border-white/10 dark:bg-[rgba(15,18,35,0.88)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_4px_24px_rgba(0,0,0,0.35)] lg:h-[88px] lg:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.65),0_6px_28px_rgba(1,148,236,0.12)] lg:dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_6px_28px_rgba(0,0,0,0.35)] xl:h-[117px] xl:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.65),0_8px_32px_rgba(1,148,236,0.14)] xl:dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_8px_32px_rgba(0,0,0,0.35)]">
-        <div className="relative mx-auto h-full w-full max-w-[1440px]">
-          {/* Mobile: &lt; lg */}
-          <div className="flex h-full items-center justify-between px-5 lg:hidden">
-            <div className="flex items-center justify-center p-[10px]">
-              <p className="font-sans font-bold whitespace-nowrap leading-none">
-                <span className="text-[22px] leading-normal text-foreground">
-                  Build
-                </span>
-                <span className="text-[22px] leading-normal text-[#0056a1]">
-                  ON
-                </span>
-                <span className="text-[22px] leading-normal text-foreground">
-                  {" Inc."}
-                </span>
-              </p>
-            </div>
-            <div className="flex items-center gap-2">
-              <ThemeToggle />
-              <button
-                type="button"
-                className="relative z-60 p-2"
-                aria-expanded={menuOpen}
-                aria-label={menuOpen ? "Close menu" : "Open menu"}
-                onClick={() => setMenuOpen((o) => !o)}
+      <header className="fixed inset-x-0 top-0 z-100 h-16 overflow-clip border-b border-white/45 bg-[#030033] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.65),0_4px_24px_rgba(1,148,236,0.1)] backdrop-blur-xl backdrop-saturate-150 transition-all dark:border-white/10 dark:bg-[rgba(15,18,35,0.88)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_4px_24px_rgba(0,0,0,0.35)] md:bg-[rgba(204,234,251,0.78)] lg:h-22 lg:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.65),0_6px_28px_rgba(1,148,236,0.12)] lg:dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_6px_28px_rgba(0,0,0,0.35)] xl:h-[117px] xl:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.65),0_8px_32px_rgba(1,148,236,0.14)] xl:dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06),0_8px_32px_rgba(0,0,0,0.35)]">
+        <div className="mx-auto flex h-full w-full max-w-screen-2xl items-center justify-between px-5 lg:px-8 xl:px-12">
+          {/* Logo (Shared across all screen sizes) */}
+          <div className="flex shrink-0 items-center justify-center p-2.5 lg:p-0">
+            <p className="font-sans font-bold leading-none whitespace-nowrap">
+              <span className="text-[22px] leading-normal text-white dark:text-[#0056a1] md:text-foreground lg:text-[24px] xl:text-[28px]">
+                Build
+              </span>
+              <span className="text-[22px] leading-normal text-white  lg:text-[24px] xl:text-[28px]">
+                ON
+              </span>
+              <span className="text-[22px] leading-normal text-white md:text-foreground lg:text-[24px] xl:text-[28px]">
+                {" Inc."}
+              </span>
+            </p>
+          </div>
+
+          {/* Desktop/Tablet Navigation Links */}
+          <nav className="hidden flex-1 items-center justify-center gap-6 font-sans text-[14px] font-normal whitespace-nowrap lg:flex xl:gap-10 xl:text-[16px]">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className={linkClass(link.label === "Home")}
               >
-                <div className="flex h-5 w-6 flex-col justify-center gap-1.5">
-                  <span
-                    className={`block h-0.5 w-6 bg-foreground transition-transform dark:bg-zinc-100 ${menuOpen ? "translate-y-[7px] rotate-45" : ""}`}
-                  />
-                  <span
-                    className={`block h-0.5 w-6 bg-foreground transition-opacity dark:bg-zinc-100 ${menuOpen ? "opacity-0" : ""}`}
-                  />
-                  <span
-                    className={`block h-0.5 w-6 bg-foreground transition-transform dark:bg-zinc-100 ${menuOpen ? "-translate-y-[7px] -rotate-45" : ""}`}
-                  />
-                </div>
-              </button>
-            </div>
-          </div>
+                {link.label}
+              </a>
+            ))}
+          </nav>
 
-          {/* Tablet: lg–xl — compact horizontal bar */}
-          <div className="hidden h-full items-center justify-between gap-4 px-6 lg:flex xl:hidden">
-            <div className="flex shrink-0 items-center justify-center p-2">
-              <p className="font-sans font-bold whitespace-nowrap leading-none">
-                <span className="text-[22px] leading-normal text-foreground lg:text-[24px]">
-                  Build
-                </span>
-                <span className="text-[22px] leading-normal text-[#0056a1] lg:text-[24px]">
-                  ON
-                </span>
-                <span className="text-[22px] leading-normal text-foreground lg:text-[24px]">
-                  {" Inc."}
-                </span>
-              </p>
-            </div>
-            <nav className="flex min-w-0 flex-1 items-center justify-center gap-4 text-[13px] font-normal whitespace-nowrap lg:gap-5 lg:text-[14px]">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className={linkClass(link.label === "Home")}
-                >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
+          {/* Desktop/Tablet Right Controls */}
+          <div className="hidden shrink-0 items-center gap-4 lg:flex xl:gap-6">
             <ThemeToggle />
-            <GlassCtaButton
-              variant="brand"
-              className="h-10 w-[min(168px,18vw)] shrink-0 px-3 font-sans text-[11px] font-normal leading-normal"
-            >
-              Get in touch
-            </GlassCtaButton>
+            <Link href={"https://x.com/buildON_Inc"} className="cursor-pointer">
+              <GlassCtaButton
+                variant="brand"
+                className="h-10 w-36 px-3 font-sans text-[12px] font-normal leading-normal whitespace-nowrap xl:h-[45px] xl:w-48 xl:text-[14px]"
+              >
+                Get in touch
+              </GlassCtaButton>
+            </Link>
           </div>
 
-          {/* Desktop xl+: Figma absolute layout */}
-          <div className="relative hidden h-full xl:block">
-            <div className="absolute top-1/2 left-5 flex -translate-y-1/2 items-center justify-center p-[10px] xl:left-[36px] xl:top-[38px] xl:translate-y-0">
-              <p className="font-sans font-bold whitespace-nowrap leading-none">
-                <span className="text-[22px] leading-normal text-foreground xl:text-[28px]">
-                  Build
-                </span>
-                <span className="text-[22px] leading-normal text-[#0056a1] xl:text-[28px]">
-                  ON
-                </span>
-                <span className="text-[22px] leading-normal text-foreground xl:text-[28px]">
-                  {" Inc."}
-                </span>
-              </p>
-            </div>
-            <div className="absolute top-[52px] left-[calc(50%-6px)] hidden -translate-x-1/2 items-center gap-[40px] font-sans text-[16px] font-normal leading-normal whitespace-nowrap xl:flex">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className={linkClass(link.label === "Home")}
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-            <ThemeToggle className="absolute top-[39px] left-[1008px] hidden xl:flex" />
-            <GlassCtaButton
-              variant="brand"
-              className="absolute top-[39px] left-[1155px] hidden h-[45px] w-[224px] font-sans text-[12px] font-normal leading-normal whitespace-nowrap xl:flex"
+          {/* Mobile Hamburger Controls */}
+          <div className="flex items-center gap-2 lg:hidden">
+            <ThemeToggle />
+            <button
+              type="button"
+              className="relative z-60 p-2"
+              aria-expanded={menuOpen}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              onClick={() => setMenuOpen((o) => !o)}
             >
-              Get in touch
-            </GlassCtaButton>
+              <div className="flex h-5 w-6 flex-col justify-center gap-1.5">
+                <span
+                  className={`block h-0.5 w-6 bg-zinc-100 transition-transform ${menuOpen ? "translate-y-1.75 rotate-45" : ""}`}
+                />
+                <span
+                  className={`block h-0.5 w-6 bg-zinc-100 transition-opacity ${menuOpen ? "opacity-0" : ""}`}
+                />
+                <span
+                  className={`block h-0.5 w-6 bg-zinc-100 transition-transform ${menuOpen ? "-translate-y-1.75 -rotate-45" : ""}`}
+                />
+              </div>
+            </button>
           </div>
         </div>
       </header>
 
+      {/* Mobile Nav Overlay (Unchanged) */}
       <AnimatePresence>
         {menuOpen ? (
           <motion.div
             id="mobile-nav"
-            className="fixed inset-0 z-40 xl:hidden"
+            className="fixed inset-0 z-40 lg:hidden"
             role="dialog"
             aria-modal="true"
             aria-label="Navigation"
@@ -180,19 +138,24 @@ export default function Navbar() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="rounded-xl px-4 py-3 font-sans text-[16px] text-foreground/90 transition-colors duration-200 ease-out hover:bg-white/35 active:bg-[rgba(1,148,236,0.18)] active:scale-[0.99] dark:hover:bg-white/10"
+                  className="rounded-xl px-4 py-3 font-sans text-[16px] text-foreground/90 transition-colors duration-200 ease-out hover:bg-white/35 active:scale-[0.99] active:bg-[rgba(1,148,236,0.18)] dark:hover:bg-white/10"
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.label}
                 </a>
               ))}
-              <GlassCtaButton
-                variant="brand"
-                className="mt-4 h-[45px] w-full font-sans text-[12px] font-normal"
-                onClick={() => setMenuOpen(false)}
+              <Link
+                href={"https://x.com/buildON_Inc"}
+                className="cursor-pointer"
               >
-                Get in touch
-              </GlassCtaButton>
+                <GlassCtaButton
+                  variant="brand"
+                  className="mt-4 h-11.25 w-full font-sans text-[12px] font-normal"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Get in touch
+                </GlassCtaButton>
+              </Link>
             </motion.nav>
           </motion.div>
         ) : null}

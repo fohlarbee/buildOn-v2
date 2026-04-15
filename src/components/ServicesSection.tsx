@@ -66,7 +66,7 @@ const services: ServiceItem[] = [
     title: "Martech",
     body: (
       <>
-        <p className="mb-0 leading-normal">{"Automation,Analytics,and "}</p>
+        <p className="mb-0 leading-normal">{"Automation, Analytics, and "}</p>
         <p className="leading-normal">engagement tools.</p>
       </>
     ),
@@ -142,42 +142,50 @@ function ServiceIcon({ kind }: { kind: "commerce" | "shield" }) {
 
 export default function ServicesSection() {
   return (
-    <Reveal className="w-full">
+    <Reveal>
       <section
         id="services"
-        className="relative scroll-mt-24 overflow-clip bg-[#030033] px-4 py-10 lg:scroll-mt-[88px] lg:py-12 xl:h-[642px] xl:scroll-mt-[117px] xl:px-0 xl:py-0"
+        // Changed w-screen to w-[100vw] to prevent Windows scrollbar overflow bugs
+        // Added smooth padding transitions: px-4 -> md:px-8 -> lg:px-16 -> xl:px-36
+        className="relative left-[50%] right-[50%] w-[100vw] -ml-[50vw] -mr-[50vw] scroll-mt-24 overflow-clip bg-[#030033] px-4 py-10 md:px-8 md:py-14 lg:scroll-mt-22 lg:px-16 lg:py-16 md:px-36 xl:py-20"
       >
-        <div className="mb-6 flex flex-col items-center gap-[2px] leading-normal lg:mb-8 xl:absolute xl:left-[611px] xl:top-[28px] xl:mb-0 xl:w-[210px] xl:items-start">
-          <p className="font-display text-[16px] font-semibold text-[#f5f5f5] [text-shadow:0_1px_2px_rgba(0,0,0,0.35)] xl:w-full xl:text-[18px]">
-            What we do
-          </p>
-          <p className="font-display text-[28px] font-bold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.45)] lg:text-[32px] xl:w-full xl:text-[36px]">
-            Our services
-          </p>
-        </div>
+        {/* Re-introduced a safe max-width so it doesn't infinitely stretch on 4K monitors */}
+        <div className="mx-auto w-full max-w-[1400px]">
+          {/* Header Section */}
+          <div className="mb-8 flex flex-col items-center gap-1 text-center lg:mb-12">
+            <p className="font-display text-[16px] font-semibold text-[#f5f5f5] [text-shadow:0_1px_2px_rgba(0,0,0,0.35)] xl:text-[18px]">
+              What we do
+            </p>
+            <p className="font-display text-[28px] font-bold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.45)] lg:text-[32px] xl:text-[36px]">
+              Our services
+            </p>
+          </div>
 
-        <div className="grid grid-cols-2 gap-3 lg:mx-auto lg:max-w-[min(920px,96vw)] lg:grid-cols-3 lg:gap-4 xl:absolute xl:left-[217px] xl:top-[128px] xl:inline-grid xl:max-w-none xl:grid-cols-[repeat(5,fit-content(100%))] xl:gap-x-[37px] xl:gap-y-[37px]">
-          {services.map((s, i) => (
-            <div
-              key={`${s.title}-${i}`}
-              className="relative flex min-h-[160px] flex-col items-start justify-center gap-[7px] rounded-[20px] border-[0.748px] border-[rgba(0,0,0,0.5)] px-3 py-4 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1),0_14px_36px_rgba(0,0,0,0.42),0_6px_16px_rgba(0,0,0,0.32),0px_1.87px_4.674px_0px_rgba(0,0,0,0.1)] motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-out motion-safe:hover:-translate-y-1 lg:min-h-[170px] xl:h-[187px] xl:w-[170px] xl:rounded-[29.913px] xl:px-[18.696px] xl:py-0"
-            >
+          {/* Grid Section */}
+          {/* Added lg:grid-cols-4 to smooth the transition between tablet and large desktop */}
+          <div className="grid w-full grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-6 xl:grid-cols-5">
+            {services.map((s, i) => (
               <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[rgba(255,255,255,0.1)]"
-              />
-              <ServiceIcon kind={s.icon} />
-              <div className="relative z-10 flex w-full flex-col items-start gap-[2px] xl:w-[135px]">
-                <p className="min-w-full font-display text-[14px] font-bold leading-normal text-[#fbf7ff] [text-shadow:0_1px_2px_rgba(0,0,0,0.45)] lg:text-[15px] xl:text-[18px]">
-                  {s.title}
-                </p>
-                <div className="w-full whitespace-pre-wrap font-display text-[12px] font-normal text-[rgba(255,255,255,0.8)] [text-shadow:0_1px_1px_rgba(0,0,0,0.35)] xl:w-[135px] xl:text-[14px]">
-                  {s.body}
+                key={`${s.title}-${i}`}
+                className="relative flex min-h-44  flex-col items-start justify-center gap-[7px] rounded-[20px] border-[0.748px] border-[rgba(0,0,0,0.5)] px-4 py-5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1),0_14px_36px_rgba(0,0,0,0.42),0_6px_16px_rgba(0,0,0,0.32),0px_1.87px_4.674px_0px_rgba(0,0,0,0.1)] motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-out motion-safe:hover:-translate-y-1 lg:min-h-[180px] xl:min-h-[190px] xl:rounded-[30px]"
+              >
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[rgba(255,255,255,0.1)]"
+                />
+                <ServiceIcon kind={s.icon} />
+                <div className="relative z-10 flex w-full flex-col items-start gap-[2px]">
+                  <p className="min-w-full font-display text-[14px] font-bold leading-normal text-[#fbf7ff] [text-shadow:0_1px_2px_rgba(0,0,0,0.45)] lg:text-[15px] xl:text-[18px]">
+                    {s.title}
+                  </p>
+                  <div className="w-full whitespace-pre-wrap font-display text-[12px] font-normal text-[rgba(255,255,255,0.8)] [text-shadow:0_1px_1px_rgba(0,0,0,0.35)] xl:text-[14px]">
+                    {s.body}
+                  </div>
                 </div>
+                <div className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_1.87px_1.87px_3.739px_0px_rgba(0,0,0,0.1)]" />
               </div>
-              <div className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_1.87px_1.87px_3.739px_0px_rgba(0,0,0,0.1)]" />
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
     </Reveal>

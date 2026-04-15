@@ -2,6 +2,7 @@ import Image from "next/image";
 import { teamMembers } from "@/lib/figma-assets";
 import GlassCtaButton from "@/components/GlassCtaButton";
 import Reveal from "@/components/Reveal";
+import Link from "next/link";
 
 function Avatar({
   member,
@@ -83,12 +84,14 @@ export default function TeamSection() {
             </div>
           ))}
           <div className="col-span-3 flex justify-center pt-4">
-            <GlassCtaButton
-              variant="navy"
-              className="h-[45px] w-[277px] font-display text-[12px] font-normal leading-normal whitespace-nowrap"
-            >
-              Get in touch
-            </GlassCtaButton>
+            <Link href={"https://x.com/buildON_Inc"} className="cursor-pointer">
+              <GlassCtaButton
+                variant="navy"
+                className="h-[45px] w-[277px] cursor-pointer font-display text-[12px] font-normal leading-normal whitespace-nowrap"
+              >
+                Get in touch
+              </GlassCtaButton>
+            </Link>
           </div>
         </div>
 
@@ -104,12 +107,14 @@ export default function TeamSection() {
               <Avatar key={m.name} member={m} />
             ))}
           </div>
-          <GlassCtaButton
-            variant="navy"
-            className="col-start-1 row-start-3 h-[45px] w-[277px] shrink-0 justify-self-center font-display text-[12px] font-normal leading-normal whitespace-nowrap"
-          >
-            Get in touch
-          </GlassCtaButton>
+          <Link href={"https://x.com/buildON_Inc"} className="cursor-pointer">
+            <GlassCtaButton
+              variant="navy"
+              className="col-start-1 row-start-3 h-[45px] w-[277px] shrink-0 justify-self-center font-display text-[12px] font-normal leading-normal whitespace-nowrap"
+            >
+              Get in touch
+            </GlassCtaButton>
+          </Link>
         </div>
       </section>
     </Reveal>

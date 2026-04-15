@@ -65,14 +65,47 @@ export default function ProjectsCarousel({
   const updateActiveIndex = useCallback(() => {
     const container = scrollRef.current;
     if (!container) return;
+
+    // 1. THE FIX: Check if we have hit the maximum scroll limit
+    // We use -5 to account for sub-pixel rendering differences on some mobile browsers
+    const maxScroll = container.scrollWidth - container.clientWidth;
+    if (container.scrollLeft >= maxScroll - 5) {
+      setActiveIndex(projects.length - 1);
+      return;
+    }
+
+    // 2. Normal math for the other dots
     const firstChild = container.firstElementChild as HTMLElement | null;
     if (!firstChild) return;
+
     const cardWidth = firstChild.offsetWidth;
-    const gap = 16;
+    const gap = 16; // 1rem gap
     const index = Math.round(container.scrollLeft / (cardWidth + gap));
     setActiveIndex(Math.max(0, Math.min(index, projects.length - 1)));
   }, [projects.length]);
 
+  const scrollToIndex = (index: number) => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const firstChild = container.firstElementChild as HTMLElement | null;
+    if (!firstChild) return;
+
+    const cardWidth = firstChild.offsetWidth;
+    const gap = 16;
+
+    // THE FIX: If clicking the last dot, scroll to absolute max width
+    if (index === projects.length - 1) {
+      container.scrollTo({
+        left: container.scrollWidth,
+        behavior: "smooth",
+      });
+    } else {
+      container.scrollTo({
+        left: index * (cardWidth + gap),
+        behavior: "smooth",
+      });
+    }
+  };
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
@@ -80,35 +113,30 @@ export default function ProjectsCarousel({
     return () => container.removeEventListener("scroll", updateActiveIndex);
   }, [updateActiveIndex]);
 
-  const scrollToIndex = (index: number) => {
-    const container = scrollRef.current;
-    if (!container) return;
-    const firstChild = container.firstElementChild as HTMLElement | null;
-    if (!firstChild) return;
-    const cardWidth = firstChild.offsetWidth;
-    const gap = 16;
-    container.scrollTo({
-      left: index * (cardWidth + gap),
-      behavior: "smooth",
-    });
-  };
-
   return (
-    <div className="w-full px-4 sm:px-6">
+    // 1. Removed horizontal padding here so it spans the true full width
+    <div className="w-full">
+      {/* 2. Added px-4 here so the cards start inset, but bleed off the screen when swiping. 
+          Also added [&::-webkit-scrollbar]:hidden to hide the ugly default scrollbar */}
       <div
         ref={scrollRef}
-        className="touch-[pan-x_pan-y] flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-pl-4 scroll-pr-4 pb-4 sm:scroll-pl-6 sm:scroll-pr-6"
+        className="flex touch-[pan-x_pan-y] snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain px-4 pb-4 sm:px-6 [&::-webkit-scrollbar]:hidden"
+        style={{ scrollbarWidth: "none" }}
       >
         {projects.map((p, i) => (
           <div
             key={i}
-            className="min-h-[280px] w-[280px] shrink-0 snap-start sm:w-[300px]"
+            className="min-h-[280px] w-[280px] shrink-0 snap-center sm:w-[300px]"
           >
             <MobileProjectCard p={p} />
           </div>
         ))}
+        {/* Spacer div to ensure the last card can be scrolled fully into view with proper right padding */}
+        <div className="w-[1px] shrink-0 sm:w-[8px]" aria-hidden="true" />
       </div>
-      <div className="flex items-center justify-center gap-2 py-4">
+
+      {/* 3. Added w-full to guarantee the dots center perfectly relative to the screen */}
+      <div className="flex w-full items-center justify-center gap-2 py-4">
         {projects.map((_, i) => (
           <button
             key={i}

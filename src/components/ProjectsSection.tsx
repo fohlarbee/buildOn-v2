@@ -39,14 +39,20 @@ const projects = [
 
 function ProjectCard({ p }: { p: (typeof projects)[number] }) {
   return (
-    <div className="relative flex h-[323px] w-[452px] flex-col items-start justify-center rounded-[29.913px] border-[0.748px] border-[rgba(0,0,0,0.5)] px-[18.696px] shadow-[0px_1.87px_4.674px_0px_rgba(0,0,0,0.1)] motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-out motion-safe:hover:-translate-y-1 dark:border-[#0056a1]/35 dark:bg-[#0f1729] dark:shadow-[0_12px_40px_rgba(0,0,0,0.45)]">
+    <div className="relative mx-auto flex min-h-[300px] w-full max-w-[400px] flex-col justify-center gap-5 rounded-[30px] border-[0.75px] border-[rgba(0,0,0,0.5)] p-6 shadow-[0px_1.87px_4.674px_0px_rgba(0,0,0,0.1)] motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-out motion-safe:hover:-translate-y-1 dark:border-[#0056a1]/35 dark:bg-[#0f1729] dark:shadow-[0_12px_40px_rgba(0,0,0,0.45)]">
+      
+      {/* Background Overlay */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[rgba(245,245,245,0.1)] dark:bg-white/6"
+        className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[rgba(245,245,245,0.1)] dark:bg-white/5"
       />
-      <div className="relative z-10 h-[177.609px] w-full">
-        <div className="absolute left-0 top-0 flex size-[44.87px] items-center justify-center rounded-[18.696px] bg-[rgba(37,111,111,0.1)] dark:bg-[rgba(0,86,161,0.25)]">
-          <div className="relative h-[18.696px] w-[16.826px]">
+
+      {/* Top Content Area (Icon + Text) */}
+      <div className="relative z-10 flex flex-col gap-4">
+        
+        {/* Icon */}
+        <div className="flex size-[45px] items-center justify-center rounded-[18px] bg-[rgba(37,111,111,0.1)] dark:bg-[rgba(0,86,161,0.25)]">
+          <div className="relative h-[19px] w-[17px]">
             <Image
               src={assets.projectIcon}
               alt=""
@@ -57,75 +63,78 @@ function ProjectCard({ p }: { p: (typeof projects)[number] }) {
             />
           </div>
         </div>
-        <div className="absolute left-0 right-[-0.31px] top-[67.3px] flex flex-col items-start">
-          <div className="flex h-[26.174px] w-[283.239px] flex-col justify-center font-sans text-[18px] font-semibold leading-normal text-[#2d3335] dark:text-zinc-100">
-            <p>{p.title}</p>
-          </div>
+
+        {/* Text Container */}
+        <div className="flex flex-col gap-2">
+          <h3 className="font-sans text-[18px] font-semibold leading-tight text-[#2d3335] dark:text-zinc-100">
+            {p.title}
+          </h3>
+          <p className="font-sans text-[15px] leading-relaxed text-[#5a6062] dark:text-zinc-400">
+            {p.description}
+          </p>
         </div>
-        <div className="absolute left-0 top-[94.41px] flex h-[57.957px] w-[402.891px] items-center justify-center py-[9.348px] pr-[9.348px]">
-          <div className="flex w-[392.609px] flex-col justify-center font-sans text-[15px] font-normal text-[#5a6062] dark:text-zinc-400">
-            <p className="leading-[24.304px]">{p.description}</p>
-          </div>
-        </div>
+
       </div>
-      <div className="flex w-full flex-col items-start pt-[13.087px]">
-        <div className="flex h-[38.696px] w-full items-start gap-[14.957px] overflow-clip opacity-50">
-          {p.tags.map((tag) => (
-            <div
-              key={tag}
-              className="flex flex-col items-start self-stretch rounded-br-[5.609px] rounded-tr-[5.609px] border-[0.935px] border-[#256f6f] bg-[rgba(78,75,213,0.2)] px-[11.217px] py-[10px] dark:border-[#4fd1c5]/45 dark:bg-[rgba(0,86,161,0.22)]"
-            >
-              <div className="flex flex-col justify-center font-sans text-[13.087px] font-semibold text-[#2d3335] dark:text-zinc-200">
-                <p className="leading-[18.696px]">{tag}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+
+      {/* Tags Container */}
+      <div className="relative z-10 mt-1 flex w-full flex-wrap gap-3 opacity-80">
+        {p.tags.map((tag) => (
+          <div
+            key={tag}
+            className="rounded-br-[6px] rounded-tr-[6px] border border-[#256f6f] bg-[rgba(78,75,213,0.2)] px-3 py-2 dark:border-[#4fd1c5]/45 dark:bg-[rgba(0,86,161,0.22)]"
+          >
+            <span className="font-sans text-[13px] font-semibold text-[#2d3335] dark:text-zinc-200">
+              {tag}
+            </span>
+          </div>
+        ))}
       </div>
+
+      {/* Inner Shadow Overlay */}
       <div className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_1.87px_1.87px_3.739px_0px_rgba(0,0,0,0.1)] dark:shadow-[inset_1.87px_1.87px_3.739px_0px_rgba(255,255,255,0.06)]" />
     </div>
   );
 }
-
 export default function ProjectsSection() {
   return (
     <Reveal className="w-full">
       <section
         id="projects"
-        className="relative mt-[-2px] scroll-mt-24 overflow-hidden bg-[#d9effc] py-10 transition-colors dark:bg-[#0b1220] lg:scroll-mt-[88px] lg:py-12 xl:h-[996px] xl:scroll-mt-[117px] xl:py-0"
+        className="relative w-[100vw] left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] scroll-mt-24 overflow-hidden bg-[#d9effc] py-12 transition-colors dark:bg-[#0b1220] lg:py-20"
       >
-        <div className="absolute left-[-105.69px] top-[-38px] h-[328px] w-[328.688px] rounded-[275.052px] bg-[#030033] blur-[250px]" />
+        <div className="absolute left-[-100px] top-[-50px] size-[328px] rounded-full bg-[#030033] blur-[200px]" />
 
-        <div className="mb-6 text-center font-display text-[28px] font-bold text-foreground lg:mb-8 lg:text-[32px] xl:absolute xl:left-[calc(50%+17.5px)] xl:top-[40px] xl:mb-0 xl:w-[487px] xl:-translate-x-1/2 xl:-translate-y-1/2 xl:text-[38px]">
-          <p className="leading-normal">Projects</p>
-        </div>
+        <div className="mx-auto w-full max-w-screen-xl">
+          {/* Header - Kept px-4 here so the text doesn't touch the screen edge */}
+          <div className="mb-8 px-4 text-center lg:mb-14 xl:px-8">
+            <h2 className="font-display text-[28px] font-bold text-foreground lg:text-[38px]">
+              Projects
+            </h2>
+          </div>
 
-        {/* Mobile + tablet: Carousel */}
-        <div className="xl:hidden">
-          <ProjectsCarousel projects={projects} />
-        </div>
+          {/* 2. MOBILE CAROUSEL - Removed padding! Now the carousel can touch the absolute edges of the screen */}
+          <div className="w-full xl:hidden">
+            <ProjectsCarousel projects={projects} />
+          </div>
 
-        {/* Desktop xl+: Grid layout */}
-        <div className="hidden xl:absolute xl:left-[26px] xl:top-[154px] xl:grid xl:w-[1388px] xl:grid-cols-1 xl:grid-rows-[repeat(2,fit-content(100%))] xl:gap-x-[27px] xl:gap-y-[27px]">
-          <div className="col-start-1 row-start-1 flex items-center gap-[16px] self-start">
-            {projects.slice(0, 3).map((p, i) => (
-              <ProjectCard key={`r1-${i}`} p={p} />
+          {/* Desktop xl+: Flex layout - Kept padding so cards don't touch edges on large screens */}
+          <div className="hidden px-6  xl:flex xl:flex-wrap xl:justify-center xl:gap-7 xl:px-8">
+            {projects.map((p, i) => (
+              <div key={`project-${i}`} className="w-[calc(33.333%-1.5rem)] ">
+                <ProjectCard p={p} />
+              </div>
             ))}
           </div>
-          <div className="col-start-1 row-start-2 flex items-center justify-center gap-[53px] self-start">
-            {projects.slice(3).map((p, i) => (
-              <ProjectCard key={`r2-${i}`} p={p} />
-            ))}
-          </div>
-        </div>
 
-        <div className="mt-6 flex justify-center lg:mt-10 xl:absolute xl:left-[calc(50%+0.5px)] xl:top-[882px] xl:mt-0 xl:-translate-x-1/2">
-          <GlassCtaButton
-            variant="navy"
-            className="h-[45px] w-[300px] font-display text-[14px] font-normal leading-normal whitespace-nowrap xl:w-[367px] xl:text-[16px]"
-          >
-            View all projects
-          </GlassCtaButton>
+          {/* CTA Button */}
+          <div className="mt-10 flex justify-center px-4 lg:mt-16 xl:px-8">
+            <GlassCtaButton
+              variant="navy"
+              className="h-[45px] w-[300px] whitespace-nowrap font-display text-[14px] font-normal sm:text-[16px] xl:w-[367px]"
+            >
+              View all projects
+            </GlassCtaButton>
+          </div>
         </div>
       </section>
     </Reveal>

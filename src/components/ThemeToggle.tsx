@@ -16,7 +16,8 @@ export default function ThemeToggle({
     setMounted(true);
   }, []);
 
-  const isDark = resolvedTheme === "dark";
+  // Hydration-safe dark mode check
+  const isDark = mounted ? resolvedTheme === "dark" : false;
 
   return (
     <button
@@ -26,19 +27,35 @@ export default function ThemeToggle({
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       disabled={!mounted}
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className={`relative inline-flex h-9 w-[3.25rem] shrink-0 items-center rounded-full border border-black/12 bg-white/90 p-0.5 shadow-sm transition-colors hover:bg-white focus-visible:ring-2 focus-visible:ring-[#0056a1] focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50 dark:border-white/15 dark:bg-white/10 dark:hover:bg-white/15 ${className}`}
+      // Added active:scale-95 for tactile click feedback and cursor-pointer
+      className={`relative inline-flex h-9 w-[3.25rem] shrink-0 cursor-pointer items-center rounded-full border border-black/12 bg-white/90 p-0.5 shadow-sm transition-all duration-300 hover:bg-white active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0056a1] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/15 dark:bg-white/10 dark:hover:bg-white/15 ${className}`}
     >
+      {/* The sliding knob with a custom bouncy spring easing */}
       <span
-        className="pointer-events-none absolute top-0.5 left-0.5 flex h-7 w-7 translate-x-0 items-center justify-center rounded-full bg-[#0056a1] text-white shadow-sm transition-transform duration-200 ease-out dark:translate-x-[1.25rem]"
+        className={`pointer-events-none absolute left-0 top-0.7 flex h-7 w-7 items-center justify-center rounded-full bg-[#0056a1] text-white shadow-md transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+          isDark ? "translate-x-[1.25rem]" : "translate-x-0"
+        }`}
         aria-hidden
       >
-        {mounted ? (
-          isDark ? (
-            <Moon className="size-3.5" strokeWidth={2.25} />
-          ) : (
-            <Sun className="size-3.5" strokeWidth={2.25} />
-          )
-        ) : null}
+        {/* Sun Icon - Spins and shrinks away when switching to dark */}
+        <Sun
+          className={`absolute size-3.5 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+            isDark
+              ? "-rotate-90 scale-0 opacity-0"
+              : "rotate-0 scale-100 opacity-100"
+          }`}
+          strokeWidth={2.25}
+        />
+
+        {/* Moon Icon - Spins and grows into view when switching to dark */}
+        <Moon
+          className={`absolute size-3.5 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+            isDark
+              ? "rotate-0 scale-100 opacity-100"
+              : "rotate-90 scale-0 opacity-0"
+          }`}
+          strokeWidth={2.25}
+        />
       </span>
       <span className="sr-only">Toggle dark mode</span>
     </button>
