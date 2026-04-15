@@ -40,13 +40,13 @@ export default function Navbar() {
           {/* Logo (Shared across all screen sizes) */}
           <div className="flex shrink-0 items-center justify-center p-2.5 lg:p-0">
             <p className="font-sans font-bold leading-none whitespace-nowrap">
-              <span className="text-[22px] leading-normal text-white dark:text-[#0056a1] md:text-foreground lg:text-[24px] xl:text-[28px]">
+              <span className="dark:text-white  text-[22px] leading-normal text-white  md:text-foreground lg:text-[24px] xl:text-[28px]">
                 Build
               </span>
-              <span className="text-[22px] leading-normal text-white  lg:text-[24px] xl:text-[28px]">
+              <span className="text-[22px] leading-normal  text-[#0056a1] lg:text-[24px] xl:text-[28px]">
                 ON
               </span>
-              <span className="text-[22px] leading-normal text-white md:text-foreground lg:text-[24px] xl:text-[28px]">
+              <span className="text-[22px] leading-normal text-[#0056a1] md:dark:text-[#0056a1] md:text-foreground lg:text-[24px] xl:text-[28px] ">
                 {" Inc."}
               </span>
             </p>
