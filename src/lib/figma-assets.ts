@@ -74,6 +74,6 @@ export const teamMembers = [
     role: "Head of Graphic",
     name: "Solo",
     src: assets.teamCollage,
-    pos: { left: "-27.91%", top: "-138.8%", h: "268.24%", w: "256.18%" },
+    pos: { left: "-129.14%", top: "-29.41%", h: "268.24%", w: "256.18%" },
   },
 ] as const;
