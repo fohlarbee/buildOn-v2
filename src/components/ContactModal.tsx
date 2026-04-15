@@ -31,7 +31,6 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // 1. Grab the data
     const formData = new FormData(e.currentTarget);
     const templateParams = {
       name: formData.get("name") as string,
@@ -41,10 +40,9 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
       time: new Date().toLocaleString(),
     };
 
-    // 2. OPTIMISTIC UI: Instantly show the success screen! No waiting.
+    //  OPTIMISTIC UI: Instantly show the success screen! No waiting.
     setIsSent(true);
 
-    // 3. Fire off the email silently in the background
     emailjs
       .send(
         "service_f2x7zwz",
@@ -58,10 +56,8 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           toast.success("Your message was sent successfully!");
         },
         (error) => {
-          // Uh oh! The background send failed (e.g., they lost internet)
           console.error("EmailJS Error:", error.text);
 
-          // Revert the UI back to the form and warn them
           setIsSent(false);
           toast.error(
             "Network error. Your message didn't go through. Please try again.",
